@@ -1,7 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  nginx-ns
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  namepsace: nginx-ns
   labels:
     app: nginx
 spec:
@@ -25,6 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  namepsace: nginx-ns
 spec:
   type: ClusterIP
   #type: NodePort
@@ -42,6 +49,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
+  namepsace: nginx-ns
 spec:
   rules:
   - http:
