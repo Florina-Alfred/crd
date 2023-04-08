@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  python-ns
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-deployment
+  namespace: python-ns
+  labels:
+    app: python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
+  template:
+    metadata:
+      labels:
+        app: python
+    spec:
+      containers:
+      - name: python
+        image: ghcr.io/florina-alfred/proposal:latest
+        ports:
+        - containerPort: 3000
+          name: http-web-svc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-service
+  namespace: python-ns
+spec:
+  type: ClusterIP
+  #type: NodePort
+  #type: LoadBalancer
+  selector:
+    app: python
+  ports:
+  - name: python-port
+    protocol: TCP
+    port: 8080
+    targetPort: http-web-svc
+    #nodePort: 30100
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-ingress
+  namespace: python-ns
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: python-service
+            port:
+              number: 8080
