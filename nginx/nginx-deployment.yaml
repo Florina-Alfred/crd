@@ -52,7 +52,8 @@ metadata:
   namepsace: nginx-ns
 spec:
   rules:
-  - http:
+  - host: "home.local"
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -61,3 +62,21 @@ spec:
             name: nginx-service
             port:
               number: 8080
+  tls:
+    - hosts:
+      - home.local
+      secretName: python-tls-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-cert
+  namespace: nginx-ns
+spec:
+  secretName: python-tls-secret
+  issuerRef:
+    name: python-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - home.local
+---
