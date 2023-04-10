@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: python
-        image: ghcr.io/florina-alfred/proposal:41d7d56
+        image: ghcr.io/florina-alfred/proposal:18e3fcd
         ports:
         - containerPort: 3000
           name: http-web-svc
