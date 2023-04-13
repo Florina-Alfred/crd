@@ -52,7 +52,7 @@ metadata:
   namespace: python-ns
 spec:
   rules:
-  - host: "home.local"
+  - host: "py.home.local"
     http:
       paths:
       - path: /
