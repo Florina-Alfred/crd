@@ -87,7 +87,7 @@ metadata:
   namespace: python-ns
 spec:
   entryPoints:
-    - web, websecure
+    - web
   routes:
     - match: Host(`home.local`) && PathPrefix(`/python`)
       kind: Rule
