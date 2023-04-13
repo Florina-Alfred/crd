@@ -88,6 +88,7 @@ metadata:
 spec:
   entryPoints:
     - web
+    - websecure
   routes:
     - match: Host(`home.local`) && PathPrefix(`/python`)
       kind: Rule
