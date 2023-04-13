@@ -121,3 +121,4 @@ spec:
   stripPrefix:
     prefixes:
       - /python
+---
