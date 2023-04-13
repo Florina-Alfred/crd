@@ -99,7 +99,7 @@ spec:
         - name: python-stripprefix
   tls:
     - hosts:
-      - py.home.local
+      - home.local
       secretName: python-tls-secret
 ---
 apiVersion: traefik.containo.us/v1alpha1
