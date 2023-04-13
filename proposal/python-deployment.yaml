@@ -83,7 +83,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: python-ingress
+  name: python-ingress-route
   namespace: python-ns
 spec:
   entryPoints:
