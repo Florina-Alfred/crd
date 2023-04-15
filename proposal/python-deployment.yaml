@@ -97,7 +97,7 @@ spec:
     name: python-deployment
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 20
+  targetCPUUtilizationPercentage: 50
 
 ---
 #apiVersion: traefik.containo.us/v1alpha1
