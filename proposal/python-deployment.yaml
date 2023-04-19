@@ -57,7 +57,7 @@ metadata:
   namespace: python-ns
 spec:
   rules:
-  - host: "py.redalf.de"
+  - host: "py.home.local"
     http:
       paths:
       - path: /
@@ -69,7 +69,7 @@ spec:
               number: 8080
   tls:
     - hosts:
-      - py.redalf.de
+      - py.home.local
       secretName: python-tls-secret
 ---
 apiVersion: cert-manager.io/v1
@@ -83,7 +83,7 @@ spec:
     name: python-clusterissuer
     kind: ClusterIssuer
   dnsNames:
-    - py.redalf.de
+    - py.home.local
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -110,7 +110,7 @@ spec:
 #    - web
 #    - websecure
 #  routes:
-#    - match: Host(`redalf.de`) && PathPrefix(`/python`)
+#    - match: Host(`home.local`) && PathPrefix(`/python`)
 #      kind: Rule
 #      services:
 #        - name: python-service
@@ -120,7 +120,7 @@ spec:
 #        - name: python-stripprefix
 ##  tls:
 ##    - hosts:
-##      - redalf.de
+##      - home.local
 ##      secretName: python-tls-secret
 #---
 #apiVersion: traefik.containo.us/v1alpha1
