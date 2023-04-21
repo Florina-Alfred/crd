@@ -110,36 +110,36 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`home.local`) && PathPrefix(`/python1`)
+    - match: Host(`py.home.local`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: python-service
           port: python-port
       middlewares:
-        - name: python-add-trailing-slash
-        - name: python-stripprefix
+#        - name: python-add-trailing-slash
+#        - name: python-stripprefix
 #  tls:
 #    - hosts:
 #      - home.local
 #      secretName: python-tls-secret
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: python-add-trailing-slash
-  namespace: python-ns
-spec:
-  redirectRegex:
-    regex: ^.*/python1$
-    replacement: /python1/
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: python-stripprefix
-  namespace: python-ns
-spec:
-  stripPrefix:
-    prefixes:
-      - /python1
+#---
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: Middleware
+#metadata:
+#  name: python-add-trailing-slash
+#  namespace: python-ns
+#spec:
+#  redirectRegex:
+#    regex: ^.*/python$
+#    replacement: /python/
+#---
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: Middleware
+#metadata:
+#  name: python-stripprefix
+#  namespace: python-ns
+#spec:
+#  stripPrefix:
+#    prefixes:
+#      - /python
 ---
