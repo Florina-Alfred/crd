@@ -72,11 +72,10 @@ spec:
       - py.home.local
       secretName: python-tls-secret
 ---
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: python-ingress
+  name: python-ingress-external
   namespace: python-ns
 spec:
   rules:
