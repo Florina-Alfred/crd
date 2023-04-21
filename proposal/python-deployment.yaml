@@ -122,8 +122,8 @@ spec:
     secretName: python-tls-secret
     domains:
     - main: py.home.local
-    sans:
-      - py.redalf.de
+      sans:
+        - py.redalf.de
 #---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
