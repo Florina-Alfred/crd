@@ -62,7 +62,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`home.local`) && PathPrefix(`/`) || Host(`redalf.de`) && PathPrefix(`/`) 
+    - match: Host(`nginx.home.local`) && PathPrefix(`/`) || Host(`nginx.redalf.de`) && PathPrefix(`/`) 
       kind: Rule
       services:
         - name: nginx-service
