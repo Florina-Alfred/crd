@@ -53,28 +53,6 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: python-ingress
-  namespace: python-ns
-spec:
-  rules:
-  - host: "py.home.local"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: python-service
-            port:
-              number: 8080
-  tls:
-    - hosts:
-      - py.home.local
-      secretName: python-tls-secret
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
   name: python-ingress-external
   namespace: python-ns
 spec:
