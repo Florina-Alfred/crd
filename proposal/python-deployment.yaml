@@ -116,6 +116,7 @@ spec:
         - name: python-service
           port: python-port
       middlewares:
+         - name: python-http-cache
 #        - name: python-add-trailing-slash
 #        - name: python-stripprefix
   tls:
@@ -124,6 +125,17 @@ spec:
     - main: py.home.local
       sans:
         - py.redalf.de
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: python-http-cache
+spec:
+  plugin:
+    httpCache:
+      maxTtl: 30
+      memory:
+        limit: "10Mi"
 #---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
