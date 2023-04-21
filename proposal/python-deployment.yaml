@@ -72,6 +72,29 @@ spec:
       - py.home.local
       secretName: python-tls-secret
 ---
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-ingress
+  namespace: python-ns
+spec:
+  rules:
+  - host: "py.redalf.de"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: python-service
+            port:
+              number: 8080
+  tls:
+    - hosts:
+      - py.redalf.de
+      secretName: python-tls-secret
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
