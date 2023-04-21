@@ -50,27 +50,27 @@ spec:
     targetPort: http-web-svc
     #nodePort: 30100
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: python-ingress-external
-  namespace: python-ns
-spec:
-  rules:
-  - host: "py.redalf.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: python-service
-            port:
-              number: 8080
-  tls:
-    - hosts:
-      - py.redalf.de
-      secretName: python-tls-secret
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: python-ingress-external
+#  namespace: python-ns
+#spec:
+#  rules:
+#  - host: "py.redalf.de"
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: python-service
+#            port:
+#              number: 8080
+#  tls:
+#    - hosts:
+#      - py.redalf.de
+#      secretName: python-tls-secret
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -100,30 +100,30 @@ spec:
   targetCPUUtilizationPercentage: 30
 
 ---
-#apiVersion: traefik.containo.us/v1alpha1
-#kind: IngressRoute
-#metadata:
-#  name: python-ingress-route
-#  namespace: python-ns
-#spec:
-#  entryPoints:
-#    - web
-#    - websecure
-#  routes:
-#    - match: Host(`py.home.local`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`) 
-#      kind: Rule
-#      services:
-#        - name: python-service
-#          port: python-port
-#      middlewares:
-##        - name: python-add-trailing-slash
-##        - name: python-stripprefix
-#  tls:
-#    secretName: python-tls-secret
-#    domains:
-#    - main: py.home.local
-#      sans:
-#        - py.redalf.de
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: python-ingress-route
+  namespace: python-ns
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`py.home.local`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`) 
+      kind: Rule
+      services:
+        - name: python-service
+          port: python-port
+      middlewares:
+#        - name: python-add-trailing-slash
+#        - name: python-stripprefix
+  tls:
+    secretName: python-tls-secret
+    domains:
+    - main: py.home.local
+      sans:
+        - py.redalf.de
 #---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
