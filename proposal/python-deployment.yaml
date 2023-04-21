@@ -118,10 +118,12 @@ spec:
       middlewares:
 #        - name: python-add-trailing-slash
 #        - name: python-stripprefix
-  tls:                              # [11]
-    secretName: python-tls-secret   # [16]
-    domains:                        # [17]
+  tls:
+    secretName: python-tls-secret
+    domains:
     - main: py.home.local
+    sans:
+      - py.redalf.de
 #---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
