@@ -27,10 +27,12 @@ spec:
         - containerPort: 80
           name: http-web-svc
         resources:
-          limits:
-            cpu: 500m
           requests:
-            cpu: 200m
+            memory: "32Mi"
+            cpu: "200m"
+          limits:
+            memory: "64Mi"
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
@@ -50,27 +52,49 @@ spec:
     targetPort: http-web-svc
     #nodePort: 30100
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: nginx-ingress
-  namepsace: nginx-ns
+  name: nginx-ingress-route
+  namespace: nginx-ns
 spec:
-  rules:
-  - host: "home.local"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx-service
-            port:
-              number: 8080
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`py.home.local`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`) 
+      kind: Rule
+      services:
+        - name: nginx-service
+          port: nginx-port
   tls:
-    - hosts:
-      - home.local
-      secretName: python-tls-secret
+    secretName: python-tls-secret
+    domains:
+    - main: py.home.local
+      sans:
+        - py.redalf.de
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: nginx-ingress
+#  namepsace: nginx-ns
+#spec:
+#  rules:
+#  - host: "home.local"
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: nginx-service
+#            port:
+#              number: 8080
+#  tls:
+#    - hosts:
+#      - home.local
+#      secretName: python-tls-secret
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate

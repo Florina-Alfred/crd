@@ -49,7 +49,7 @@ spec:
     port: 8080
     targetPort: http-web-svc
     #nodePort: 30100
----
+#---
 #apiVersion: networking.k8s.io/v1
 #kind: Ingress
 #metadata:
@@ -98,7 +98,6 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 30
-
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -115,7 +114,7 @@ spec:
       services:
         - name: python-service
           port: python-port
-      middlewares:
+#      middlewares:
 #        - name: python-http-cache
 #        - name: python-add-trailing-slash
 #        - name: python-stripprefix
@@ -126,16 +125,16 @@ spec:
       sans:
         - py.redalf.de
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: python-http-cache
-spec:
-  plugin:
-    httpCache:
-      maxTtl: 30
-      memory:
-        limit: "10Mi"
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: Middleware
+#metadata:
+#  name: python-http-cache
+#spec:
+#  plugin:
+#    httpCache:
+#      maxTtl: 30
+#      memory:
+#        limit: "10Mi"
 #---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
