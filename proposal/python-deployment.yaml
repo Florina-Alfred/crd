@@ -122,24 +122,24 @@ spec:
 #    - hosts:
 #      - home.local
 #      secretName: python-tls-secret
-#---
-#apiVersion: traefik.containo.us/v1alpha1
-#kind: Middleware
-#metadata:
-#  name: python-add-trailing-slash
-#  namespace: python-ns
-#spec:
-#  redirectRegex:
-#    regex: ^.*/python$
-#    replacement: /python/
-#---
-#apiVersion: traefik.containo.us/v1alpha1
-#kind: Middleware
-#metadata:
-#  name: python-stripprefix
-#  namespace: python-ns
-#spec:
-#  stripPrefix:
-#    prefixes:
-#      - /python
-#---
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: python-add-trailing-slash
+  namespace: python-ns
+spec:
+  redirectRegex:
+    regex: ^.*/python$
+    replacement: /python/
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: python-stripprefix
+  namespace: python-ns
+spec:
+  stripPrefix:
+    prefixes:
+      - /python
+---
