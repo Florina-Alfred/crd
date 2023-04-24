@@ -49,7 +49,7 @@ spec:
     port: 8080
     targetPort: http-web-svc
     #nodePort: 30100
-#---
+---
 #apiVersion: networking.k8s.io/v1
 #kind: Ingress
 #metadata:
@@ -71,7 +71,7 @@ spec:
 #    - hosts:
 #      - py.redalf.de
 #      secretName: python-tls-secret
----
+#---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
