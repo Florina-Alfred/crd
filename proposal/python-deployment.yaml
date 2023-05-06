@@ -38,6 +38,7 @@ metadata:
   name: python-service
   namespace: python-ns
 spec:
+  externalTrafficPolicy: Local
   type: ClusterIP
   #type: NodePort
   #type: LoadBalancer
