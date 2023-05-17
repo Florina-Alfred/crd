@@ -161,7 +161,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
     name: personal-cloudflarewarp
-    namespace: pytohn-ns
+    namespace: python-ns
 spec:
     plugin:
         cloudflarewarp:
