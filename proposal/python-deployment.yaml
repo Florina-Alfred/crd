@@ -114,8 +114,8 @@ spec:
       services:
         - name: python-service
           port: python-port
-      middlewares:
-        - name: personal-cloudflarewarp
+#      middlewares:
+#        - name: personal-cloudflarewarp
 #        - name: python-http-cache
 #        - name: python-add-trailing-slash
 #        - name: python-stripprefix
