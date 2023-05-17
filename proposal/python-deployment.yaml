@@ -115,10 +115,10 @@ spec:
         - name: python-service
           port: python-port
       middlewares:
+        - name: cloudflarewarp
 #        - name: python-http-cache
 #        - name: python-add-trailing-slash
 #        - name: python-stripprefix
-        - name: cloudflarewarp
   tls:
     secretName: python-tls-secret
     domains:
