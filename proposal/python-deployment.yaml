@@ -116,7 +116,7 @@ spec:
           port: python-port
       middlewares:
         - name: python-ns-personal-cloudflarewarp@kubernetescrd
-#          namespace: python-ns
+          namespace: python-ns
   tls:
     secretName: python-tls-secret
     domains:
