@@ -114,12 +114,15 @@ spec:
       services:
         - name: python-service
           port: python-port
-      middlewares:
-        - name: personal-cloudflarewarp
-          namespace: python-ns
+#      middlewares:
+#        - name: personal-cloudflarewarp
+#          namespace: python-ns
 #        - name: python-http-cache
+#          namespace: python-ns
 #        - name: python-add-trailing-slash
+#          namespace: python-ns
 #        - name: python-stripprefix
+#          namespace: python-ns
   tls:
     secretName: python-tls-secret
     domains:
