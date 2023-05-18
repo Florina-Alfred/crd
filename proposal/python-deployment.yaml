@@ -100,6 +100,16 @@ spec:
   targetCPUUtilizationPercentage: 30
 ---
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: cloudflarewarp
+  namespace: python-ns
+spec:
+  plugin:
+    cloudflarewarp:
+      disableDefault: "false"
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: python-ingress-route
@@ -134,16 +144,16 @@ spec:
 #      maxTtl: 30
 #      memory:
 #        limit: "10Mi"
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: python-add-trailing-slash
-  namespace: python-ns
-spec:
-  redirectRegex:
-    regex: ^.*/python$
-    replacement: /python/
+#---
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: Middleware
+#metadata:
+#  name: python-add-trailing-slash
+#  namespace: python-ns
+#spec:
+#  redirectRegex:
+#    regex: ^.*/python$
+#    replacement: /python/
 #---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
@@ -154,14 +164,4 @@ spec:
 #  stripPrefix:
 #    prefixes:
 #      - /python
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: cloudflarewarp
-  namespace: python-ns
-spec:
-  plugin:
-    cloudflarewarp:
-      disableDefault: "false"
 ---
