@@ -106,7 +106,7 @@ metadata:
   namespace: python-ns
 spec:
   entryPoints:
-    - web
+#    - web
     - websecure
   routes:
     - match: Host(`py.home.local`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`)  
