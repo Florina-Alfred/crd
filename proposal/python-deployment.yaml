@@ -114,15 +114,9 @@ spec:
       services:
         - name: python-service
           port: python-port
-#      middlewares:
-#        - name: personal-cloudflarewarp
-#          namespace: python-ns
-#        - name: python-http-cache
-#          namespace: python-ns
-#        - name: python-add-trailing-slash
-#          namespace: python-ns
-#        - name: python-stripprefix
-#          namespace: python-ns
+      middlewares:
+        - name: personal-cloudflarewarp
+          namespace: python-ns
   tls:
     secretName: python-tls-secret
     domains:
@@ -164,12 +158,10 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-    name: personal-cloudflarewarp
-    namespace: python-ns
+  name: personal-cloudflarewarp
+  namespace: python-ns
 spec:
-    plugin:
-        cloudflarewarp:
-            disableDefault: "false"
-            #trustip:
-            #    - 2400:cb00::/32
+  plugin:
+    cloudflarewarp:
+      disableDefault: "false"
 ---
