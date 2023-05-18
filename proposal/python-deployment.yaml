@@ -114,9 +114,9 @@ spec:
       services:
         - name: python-service
           port: python-port
-      middlewares:
-        - name: personal-cloudflarewarp
-          namespace: python-ns
+#      middlewares:
+#        - name: personal-cloudflarewarp
+#          namespace: python-ns
   tls:
     secretName: python-tls-secret
     domains:
