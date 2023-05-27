@@ -80,7 +80,7 @@ metadata:
   name: nginx-ingress
   namespace: nginx-ns
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
 spec:
   rules:
   - host: "nginx.redalf.de"
