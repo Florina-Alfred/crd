@@ -83,7 +83,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   rules:
-  - host: "home.local"
+  - host: "nginx.redalf.de"
     http:
       paths:
       - path: /
@@ -93,21 +93,21 @@ spec:
             name: nginx-service
             port:
               number: 8080
-  tls:
-    - hosts:
-      - home.local
-      secretName: python-tls-secret
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: nginx-cert
-  namespace: nginx-ns
-spec:
-  secretName: python-tls-secret
-  issuerRef:
-    name: python-clusterissuer
-    kind: ClusterIssuer
-  dnsNames:
-    - home.local
+#  tls:
+#    - hosts:
+#      - home.local
+#      secretName: python-tls-secret
+#---
+#apiVersion: cert-manager.io/v1
+#kind: Certificate
+#metadata:
+#  name: nginx-cert
+#  namespace: nginx-ns
+#spec:
+#  secretName: python-tls-secret
+#  issuerRef:
+#    name: python-clusterissuer
+#    kind: ClusterIssuer
+#  dnsNames:
+#    - home.local
 ---
