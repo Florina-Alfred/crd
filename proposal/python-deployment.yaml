@@ -109,7 +109,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`py.redalf.test`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`)  
+    - match: Host(`demo.redalf.test`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`)  
       kind: Rule
       services:
         - name: python-service
@@ -123,7 +123,7 @@ spec:
 #    - main: py.home.local
 #      sans:
 #        - py.redalf.de
-#---
+---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
 #metadata:
@@ -154,8 +154,7 @@ spec:
 #  stripPrefix:
 #    prefixes:
 #      - /python
-
----
+#---
 #apiVersion: traefik.containo.us/v1alpha1
 #kind: Middleware
 #metadata:
