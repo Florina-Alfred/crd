@@ -109,7 +109,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`demo.redalf.test`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`)  
+    - match: Host(`py.redalf.test`) && PathPrefix(`/`) || Host(`py.redalf.de`) && PathPrefix(`/`)  
       kind: Rule
       services:
         - name: python-service
