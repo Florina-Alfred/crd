@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-deployment
+  labels:
+    app: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka-pro
+        image: ghcr.io/florina-alfred/komm-pro:88f3c09
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: 500m
+          requests:
+            memory: "64Mi"
+            cpu: 200m
+      - name: kafka-con
+        image: ghcr.io/florina-alfred/komm-con:88f3c09
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: 500m
+          requests:
+            memory: "64Mi"
+            cpu: 200m
