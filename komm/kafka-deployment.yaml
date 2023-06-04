@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kafka-pro
-        image: ghcr.io/florina-alfred/komm-pro:88f3c09
+        image: ghcr.io/florina-alfred/komm-pro:95b56dc
         resources:
           limits:
             memory: "128Mi"
@@ -25,7 +25,7 @@ spec:
             memory: "64Mi"
             cpu: 200m
       - name: kafka-con
-        image: ghcr.io/florina-alfred/komm-con:88f3c09
+        image: ghcr.io/florina-alfred/komm-con:95b56dc
         resources:
           limits:
             memory: "128Mi"
