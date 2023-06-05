@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:21a4f1b
+        image: ghcr.io/florina-alfred/komm-pro:e1adefe
         env:
         - name: BROKER_SERVER
           value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
@@ -30,7 +30,7 @@ spec:
             memory: "64Mi"
             cpu: "500m"
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:21a4f1b
+        image: ghcr.io/florina-alfred/komm-con:e1adefe
         ports:
         - containerPort: 8000
           name: fastapi-port
