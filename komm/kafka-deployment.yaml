@@ -16,6 +16,16 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:0c6fde1
+        image: ghcr.io/florina-alfred/komm-pro:c76c912
+        env:
+        - name: BROKER_SERVER
+          value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
+        - name: KAFKA_TOPIC
+          value: "uuid_gen"
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:0c6fde1
+        image: ghcr.io/florina-alfred/komm-con:c76c912
+        env:
+        - name: BROKER_SERVER
+          value: "kafka.default.svc.cluster.local"
+        - name: KAFKA_TOPIC
+          value: "uuid_gen"
