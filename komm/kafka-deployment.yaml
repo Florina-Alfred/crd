@@ -64,3 +64,18 @@ spec:
     targetPort: fastapi-port
     #nodePort: 30100
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: komm-con-ingress-route
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`komm.redalf.test`) && PathPrefix(`/`) || Host(`komm.redalf.de`) && PathPrefix(`/`)  
+      kind: Rule
+      services:
+        - name: komm-con-service
+          port: fastapi-svc-port
+---
