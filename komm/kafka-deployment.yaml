@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:46bdd20
+        image: ghcr.io/florina-alfred/komm-pro:4cb4746
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:46bdd20
+        image: ghcr.io/florina-alfred/komm-con:4cb4746
