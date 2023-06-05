@@ -16,16 +16,51 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:c76c912
+        image: ghcr.io/florina-alfred/komm-pro:e831721
         env:
         - name: BROKER_SERVER
           value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
           value: "uuid_gen"
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "200m"
+          limits:
+            memory: "64Mi"
+            cpu: "500m"
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:c76c912
+        image: ghcr.io/florina-alfred/komm-con:e831721
+        ports:
+        - containerPort: 8000
+          name: fastapi-port
         env:
         - name: BROKER_SERVER
           value: "kafka.default.svc.cluster.local"
         - name: KAFKA_TOPIC
           value: "uuid_gen"
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "200m"
+          limits:
+            memory: "64Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: komm-con-service
+spec:
+  type: ClusterIP
+  #type: NodePort
+  #type: LoadBalancer
+  selector:
+    app: komm
+  ports:
+  - name: fastapi-svc-port
+    protocol: TCP
+    port: 8080
+    targetPort: fastapi-port
+    #nodePort: 30100
+---
