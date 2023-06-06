@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:fa3350f
+        image: ghcr.io/florina-alfred/komm-pro:996898f
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
@@ -27,15 +27,9 @@ spec:
           value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
           value: "uuid_gen"
-        resources:
-          requests:
-            memory: "32Mi"
-            cpu: "200m"
-          limits:
-            memory: "64Mi"
-            cpu: "500m"
+
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:fa3350f
+        image: ghcr.io/florina-alfred/komm-con:996898f
         ports:
         - containerPort: 8000
           name: fastapi-port
@@ -44,13 +38,7 @@ spec:
           value: "kafka.default.svc.cluster.local"
         - name: KAFKA_TOPIC
           value: "uuid_gen"
-        resources:
-          requests:
-            memory: "32Mi"
-            cpu: "200m"
-          limits:
-            memory: "64Mi"
-            cpu: "500m"
+
       nodeSelector:
         kubernetes.io/hostname: server01
       volumes:
