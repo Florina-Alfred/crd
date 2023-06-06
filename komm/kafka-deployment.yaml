@@ -27,7 +27,8 @@ spec:
           value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
           value: "uuid_gen"
-
+        command: ["printenv"]
+        args: ["HOSTNAME", "BROKER_SERVER"]
       - name: komm-con
         image: ghcr.io/florina-alfred/komm-con:996898f
         ports:
@@ -38,7 +39,6 @@ spec:
           value: "kafka.default.svc.cluster.local"
         - name: KAFKA_TOPIC
           value: "uuid_gen"
-
       nodeSelector:
         kubernetes.io/hostname: server01
       volumes:
