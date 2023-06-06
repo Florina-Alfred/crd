@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:961d08f
+        image: ghcr.io/florina-alfred/komm-pro:44e41f1
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
@@ -35,7 +35,7 @@ spec:
             memory: "64Mi"
             cpu: "500m"
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:961d08f
+        image: ghcr.io/florina-alfred/komm-con:44e41f1
         ports:
         - containerPort: 8000
           name: fastapi-port
