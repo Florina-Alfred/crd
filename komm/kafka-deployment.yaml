@@ -27,8 +27,8 @@ spec:
           value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
           value: "frame"
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
+        #command: [ "/bin/bash", "-c", "--" ]
+        #args: [ "while true; do sleep 30; done;" ]
       - name: komm-con
         image: ghcr.io/florina-alfred/komm-con:af2f9ac
         ports:
@@ -39,8 +39,8 @@ spec:
           value: "kafka.default.svc.cluster.local"
         - name: KAFKA_TOPIC
           value: "frame"
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
+        #command: [ "/bin/bash", "-c", "--" ]
+        #args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
         kubernetes.io/hostname: server01
       volumes:
