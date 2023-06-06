@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:996898f
+        image: ghcr.io/florina-alfred/komm-pro:af2f9ac
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
@@ -26,11 +26,11 @@ spec:
         - name: BROKER_SERVER
           value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
-          value: "uuid_gen"
+          value: "frame"
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:996898f
+        image: ghcr.io/florina-alfred/komm-con:af2f9ac
         ports:
         - containerPort: 8000
           name: fastapi-port
@@ -38,7 +38,9 @@ spec:
         - name: BROKER_SERVER
           value: "kafka.default.svc.cluster.local"
         - name: KAFKA_TOPIC
-          value: "uuid_gen"
+          value: "frame"
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
         kubernetes.io/hostname: server01
       volumes:
