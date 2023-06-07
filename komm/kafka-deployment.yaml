@@ -27,7 +27,7 @@ spec:
           value: "kafka-stack-0.kafka-stack-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
           value: "frame"
-        #command: [ "/bin/bash", "-c", "--" ]
+        #command: [ "/bin/bash", "-c", "--" ] 
         #args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
         kubernetes.io/hostname: server01
