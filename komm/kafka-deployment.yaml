@@ -29,6 +29,30 @@ spec:
           value: "frame"
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
+      nodeSelector:
+        kubernetes.io/hostname: server01
+      volumes:
+      - name: dev-video0
+        hostPath:
+          path:  /dev/video0
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: komm-deployment
+  labels:
+    app: komm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: komm
+  template:
+    metadata:
+      labels:
+        app: komm
+    spec:
+      containers:
       - name: komm-con
         image: ghcr.io/florina-alfred/komm-con:af2f9ac
         ports:
