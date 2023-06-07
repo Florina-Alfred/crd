@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:c015cdb
+        image: ghcr.io/florina-alfred/komm-pro:78116b4
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
@@ -24,7 +24,7 @@ spec:
           privileged: true
         env:
         - name: BROKER_SERVER
-          value: "kafka-0.kafka-headless.default.svc.cluster.local:9092"
+          value: "kafka-stack-0.kafka-stack-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
           value: "frame"
         #command: [ "/bin/bash", "-c", "--" ]
@@ -54,13 +54,13 @@ spec:
     spec:
       containers:
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:c015cdb
+        image: ghcr.io/florina-alfred/komm-con:78116b4
         ports:
         - containerPort: 8000
           name: fastapi-port
         env:
         - name: BROKER_SERVER
-          value: "kafka.default.svc.cluster.local"
+          value: "kafka-stack.default.svc.cluster.local"
         - name: KAFKA_TOPIC
           value: "frame"
         #command: [ "/bin/bash", "-c", "--" ]
