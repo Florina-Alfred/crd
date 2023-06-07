@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:
+        image: ghcr.io/florina-alfred/komm-pro:b0b07a1
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
