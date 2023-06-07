@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: komm-deployment
+  name: komm-pro-deployment
   labels:
-    app: komm
+    app: komm-pro
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: komm
+      app: komm-pro
   template:
     metadata:
       labels:
-        app: komm
+        app: komm-pro
     spec:
       containers:
       - name: komm-pro
@@ -39,18 +39,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: komm-deployment
+  name: komm-con-deployment
   labels:
-    app: komm
+    app: komm-con
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: komm
+      app: komm-con
   template:
     metadata:
       labels:
-        app: komm
+        app: komm-con
     spec:
       containers:
       - name: komm-con
@@ -81,7 +81,7 @@ spec:
   #type: NodePort
   #type: LoadBalancer
   selector:
-    app: komm
+    app: komm-con
   ports:
   - name: fastapi-svc-port
     protocol: TCP
