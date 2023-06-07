@@ -43,7 +43,7 @@ metadata:
   labels:
     app: komm-con
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: komm-con
