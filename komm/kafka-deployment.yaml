@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:398d36a
+        image: ghcr.io/florina-alfred/komm-pro:a0b15d3
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
@@ -28,6 +28,8 @@ spec:
           value: "kafka-stack-0.kafka-stack-headless.default.svc.cluster.local:9092"
         - name: KAFKA_TOPIC
           value: "frame"
+        - name: KAFKA_COMPRESSION
+          value: "lz4"
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
@@ -56,7 +58,7 @@ spec:
     spec:
       containers:
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:398d36a
+        image: ghcr.io/florina-alfred/komm-con:a0b15d3
         ports:
         - containerPort: 8000
           name: fastapi-port
