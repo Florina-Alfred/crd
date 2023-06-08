@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: komm-pro-deployment
+  namespace: default
   labels:
     app: komm-pro
 spec:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:3e34b17
+        image: ghcr.io/florina-alfred/komm-pro:398d36a
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
@@ -40,6 +41,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: komm-con-deployment
+  namespace: default
   labels:
     app: komm-con
 spec:
@@ -54,7 +56,7 @@ spec:
     spec:
       containers:
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:3e34b17
+        image: ghcr.io/florina-alfred/komm-con:398d36a
         ports:
         - containerPort: 8000
           name: fastapi-port
@@ -76,6 +78,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: komm-con-service
+  namespace: default
 spec:
   type: ClusterIP
   #type: NodePort
@@ -93,6 +96,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: komm-con-ingress-route
+  namespace: default
 spec:
   entryPoints:
     - web
