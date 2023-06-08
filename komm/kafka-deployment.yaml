@@ -31,9 +31,9 @@ spec:
         - name: KAFKA_COMPRESSION
           value: "gzip"
         - name: CV2_IMAGE_SCALE
-          value: "1"
+          value: "2"
         - name: CV2_ENCODE_SCALE
-          value: "7"          
+          value: "60"          
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
