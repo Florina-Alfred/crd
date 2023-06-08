@@ -33,7 +33,7 @@ spec:
         - name: CV2_IMAGE_SCALE
           value: "2"
         - name: CV2_ENCODE_SCALE
-          value: "50"          
+          value: "80"          
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
