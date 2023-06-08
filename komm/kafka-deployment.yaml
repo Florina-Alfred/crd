@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: komm-pro
-        image: ghcr.io/florina-alfred/komm-pro:a0b15d3
+        image: ghcr.io/florina-alfred/komm-pro:6e44cbf
         volumeMounts:
           - name:  dev-video0
             mountPath: /dev/video0
@@ -30,6 +30,10 @@ spec:
           value: "frame"
         - name: KAFKA_COMPRESSION
           value: "gzip"
+        - name: CV2_IMAGE_SCALE
+          value: "2"
+        - name: CV2_ENCODE_SCALE
+          value: "50"          
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
@@ -58,7 +62,7 @@ spec:
     spec:
       containers:
       - name: komm-con
-        image: ghcr.io/florina-alfred/komm-con:a0b15d3
+        image: ghcr.io/florina-alfred/komm-con:6e44cbf
         ports:
         - containerPort: 8000
           name: fastapi-port
