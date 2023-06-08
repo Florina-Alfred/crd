@@ -29,7 +29,7 @@ spec:
         - name: KAFKA_TOPIC
           value: "frame"
         - name: KAFKA_COMPRESSION
-          value: "lz4"
+          value: "gzip"
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
       nodeSelector:
