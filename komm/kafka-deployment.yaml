@@ -31,7 +31,7 @@ spec:
         - name: KAFKA_COMPRESSION
           value: "gzip"
         - name: CV2_IMAGE_SCALE
-          value: "3"
+          value: "2"
         - name: CV2_ENCODE_SCALE
           value: "80"          
         #command: [ "/bin/bash", "-c", "--" ]
