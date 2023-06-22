@@ -165,15 +165,3 @@ spec:
 #    cloudflarewarp:
 #      disableDefault: "false"
 #---
-apiVersion: keda.sh/v1alpha1
-kind: ScaledObject
-metadata:
-  name: workload-scaledobject
-spec:
-  scaleTargetRef:
-    name: python-deployment
-  triggers:
-  - type: kubernetes-workload
-    metadata:
-      podSelector: 'app: python'
-      value: '3'
