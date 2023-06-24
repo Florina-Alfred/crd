@@ -182,7 +182,7 @@ spec:
   - port: http-web-svc
     interval: 15s
     path: /metrics
-    scheme: HTTP
+    scheme: TCP
     #tlsConfig:
     #  insecureSkipVerify: true
 ---
