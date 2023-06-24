@@ -168,7 +168,8 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: pytohn-service-monitoring
+  name: python-servicemonitor
+  namespace: python-ns
   labels:
     app: python
 spec:
@@ -177,4 +178,9 @@ spec:
       app: python
   endpoints:
   - port: python-port
+    interval: 15s
+    path: /metrics
+    scheme: HTTP
+    tlsConfig:
+      insecureSkipVerify: true
 ---
