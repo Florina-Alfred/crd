@@ -37,6 +37,8 @@ kind: Service
 metadata:
   name: python-service
   namespace: python-ns
+  labels:
+    app: python
 spec:
   type: ClusterIP
   #type: NodePort
