@@ -177,7 +177,7 @@ spec:
     matchLabels:
       app: python
   endpoints:
-  - port: python-port
+  - port: http-web-svc
     interval: 15s
     path: /metrics
     #scheme: HTTP
