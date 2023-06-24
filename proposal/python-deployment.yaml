@@ -37,6 +37,8 @@ kind: Service
 metadata:
   name: python-service
   namespace: python-ns
+  labels:
+    app: python
 spec:
   type: ClusterIP
   #type: NodePort
@@ -178,7 +180,7 @@ spec:
       app: python
   namespaceSelector:
     matchNames:
-    - python-ns
+    - python-service
   endpoints:
   - port: http-web-svc
     interval: 15s
