@@ -165,3 +165,16 @@ spec:
 #    cloudflarewarp:
 #      disableDefault: "false"
 #---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: pytohn-service-monitoring
+  labels:
+    app: python
+spec:
+  selector:
+    matchLabels:
+      app: python
+  endpoints:
+  - port: python-port
+---
