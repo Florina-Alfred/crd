@@ -180,7 +180,7 @@ spec:
   - port: python-port
     interval: 15s
     path: /metrics
-    scheme: HTTP
-    tlsConfig:
-      insecureSkipVerify: true
+    #scheme: HTTP
+    #tlsConfig:
+    #  insecureSkipVerify: true
 ---
