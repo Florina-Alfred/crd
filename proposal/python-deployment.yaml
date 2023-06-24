@@ -176,6 +176,9 @@ spec:
   selector:
     matchLabels:
       app: python
+  namespaceSelector:
+    matchNames:
+    - python-ns
   endpoints:
   - port: http-web-svc
     interval: 15s
