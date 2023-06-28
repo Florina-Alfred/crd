@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: depthai-spatial
-        image: localhost:5000/oak:exp_tag
+        image: localhost:5000/oak:exp_spa
         ports:
         - containerPort: 8001
           name: metrics-port
