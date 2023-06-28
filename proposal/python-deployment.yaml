@@ -7,7 +7,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-deployment
-  #namespace: python-ns
+  namespace: python-ns
   labels:
     app: python
 spec:
@@ -36,7 +36,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: python-service
-  #namespace: python-ns
+  namespace: python-ns
   labels:
     app: python
 spec:
@@ -56,7 +56,7 @@ spec:
 #kind: Ingress
 #metadata:
 #  name: python-ingress-external
-##  namespace: python-ns
+#  namespace: python-ns
 #spec:
 #  rules:
 #  - host: "py.redalf.de"
@@ -78,7 +78,7 @@ spec:
 #kind: Certificate
 #metadata:
 #  name: python-cert
-##  namespace: python-ns
+#  namespace: python-ns
 #spec:
 #  secretName: python-tls-secret
 #  issuerRef:
@@ -91,7 +91,7 @@ spec:
 #kind: HorizontalPodAutoscaler
 #metadata:
 #  name: python-deployment
-##  namespace: python-ns
+#  namespace: python-ns
 #spec:
 #  scaleTargetRef:
 #    apiVersion: apps/v1
@@ -105,7 +105,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: python-ingress-route
-  #namespace: python-ns
+  namespace: python-ns
 spec:
   entryPoints:
     - web
@@ -118,7 +118,7 @@ spec:
           port: python-port
 #      middlewares:
 #        - name: cloudflarewarp
-##          namespace: python-ns
+#          namespace: python-ns
 #  tls:
 #    secretName: python-tls-secret
 #    domains:
@@ -141,7 +141,7 @@ spec:
 #kind: Middleware
 #metadata:
 #  name: python-add-trailing-slash
-##  namespace: python-ns
+#  namespace: python-ns
 #spec:
 #  redirectRegex:
 #    regex: ^.*/python$
@@ -151,7 +151,7 @@ spec:
 #kind: Middleware
 #metadata:
 #  name: python-stripprefix
-##  namespace: python-ns
+#  namespace: python-ns
 #spec:
 #  stripPrefix:
 #    prefixes:
@@ -161,7 +161,7 @@ spec:
 #kind: Middleware
 #metadata:
 #  name: cloudflarewarp
-##  namespace: python-ns
+#  namespace: python-ns
 #spec:
 #  plugin:
 #    cloudflarewarp:
@@ -171,7 +171,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: python-servicemonitor
-  #namespace: python-ns
+  namespace: python-ns
   labels:
     app: python
     release: grafana-stack
@@ -180,7 +180,8 @@ spec:
     matchLabels:
       app: python
   namespaceSelector:
-    any: true
+    matchNames:
+    - python-ns
   endpoints:
   - port: http-web-svc
     interval: 15s
