@@ -180,8 +180,7 @@ spec:
     matchLabels:
       app: python
   namespaceSelector:
-    matchNames:
-    - python-service
+    any: true
   endpoints:
   - port: http-web-svc
     interval: 15s
