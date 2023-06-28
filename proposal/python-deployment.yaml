@@ -179,7 +179,6 @@ spec:
   selector:
     matchLabels:
       app: python
-      release: grafana-stack
   namespaceSelector:
     any: true
   endpoints:
