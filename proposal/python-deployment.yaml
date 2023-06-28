@@ -179,7 +179,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-    - {key: k8s-app, operator: Exists}
+    - key: k8s-app
+      operator: Exists
   namespaceSelector:
     matchNames:
     - python-ns
