@@ -182,7 +182,7 @@ spec:
   selector:
     matchLabels:
     - key: k8s-app
-      operator: Exists
+      #operator: Exists
   namespaceSelector:
     matchNames:
     - python-ns
