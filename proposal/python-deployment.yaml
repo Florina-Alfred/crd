@@ -177,7 +177,7 @@ metadata:
   namespace: python-ns
   labels:
     k8s-app: python
-    release: grafana-stack
+    release: kube-prometheus
 spec:
   selector:
     matchExpressions:
