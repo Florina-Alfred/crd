@@ -40,6 +40,8 @@ metadata:
   labels:
     app: python
     k8s-app: python
+  annotations:
+    alpha.monitoring.coreos.com/non-namespaced: "true"
 spec:
   type: ClusterIP
   #type: NodePort
@@ -187,8 +189,8 @@ spec:
   endpoints:
   - port: http-web-svc
     interval: 15s
-    path: /metrics
-    #scheme: TCP
+    #path: /metrics
+    scheme: TCP
     #tlsConfig:
     #  insecureSkipVerify: true
 ---
