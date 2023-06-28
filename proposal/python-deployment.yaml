@@ -175,6 +175,7 @@ metadata:
   namespace: python-ns
   labels:
     k8s-app: python
+    release: grafana-stack
 spec:
   selector:
     matchLabels:
