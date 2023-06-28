@@ -39,6 +39,7 @@ metadata:
   namespace: python-ns
   labels:
     app: python
+    k8s-app: python
 spec:
   type: ClusterIP
   #type: NodePort
@@ -173,12 +174,11 @@ metadata:
   name: python-servicemonitor
   namespace: python-ns
   labels:
-    app: python
-    release: grafana-stack
+    k8s-app: python
 spec:
   selector:
     matchLabels:
-      app: python
+    - {key: k8s-app, operator: Exists}
   namespaceSelector:
     matchNames:
     - python-ns
