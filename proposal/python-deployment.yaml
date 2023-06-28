@@ -180,7 +180,7 @@ metadata:
     release: grafana-stack
 spec:
   selector:
-    matchLabels:
+    matchExpressions:
     - {key: k8s-app, operator: Exists}
   namespaceSelector:
     matchNames:
