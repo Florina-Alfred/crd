@@ -1,0 +1,143 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depthai-spatial
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: depthai-spatial
+  template:
+    metadata:
+      labels:
+        app: depthai-spatial
+    spec:
+      containers:
+      - name: depthai-spatial
+        image: localhost:5000/oak:exp_tag
+        ports:
+        - containerPort: 8001
+          name: metrics-port
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: usb-volume
+          mountPath: /dev/bus/usb
+        - name: x11-unix-volume
+          mountPath: /tmp/.X11-unix
+        env:
+        - name: DISPLAY
+          value: ${DISPLAY}
+        - name: BROKER_SERVER
+          value: "kafka-stack.default.svc.cluster.local"
+        - name: KAFKA_TOPIC
+          value: "frame"
+        #command: ["/bin/sh", "-c"]
+        #args: ["while true; do sleep 86400; done"]
+        #command:
+        #- python3
+        #- /depthai-kubernetes/spatial_mobilessd_kafka.py
+        # Uncomment the following lines to specify alternative command options
+        # - python3
+        # - /depthai-python/examples/FeatureTracker/feature_tracker_color.py
+        # - python3
+        # - /depthai-python/examples/SpatialDetection/spatial_mobilenet.py
+        # - python3
+        # - /depthai-python/examples/EdgeDetector/edge_detector.py
+        # - bash
+      nodeSelector:
+        kubernetes.io/hostname: server01
+      volumes:
+      - name: usb-volume
+        hostPath:
+          path: /dev/bus/usb
+      - name: x11-unix-volume
+        hostPath:
+          path: /tmp/.X11-unix
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: depthai-spatial-service
+  namespace: default
+spec:
+  type: ClusterIP
+  #type: NodePort
+  #type: LoadBalancer
+  selector:
+    app: depthai-spatial
+  ports:
+  - name: metrics-svc-port
+    protocol: TCP
+    port: 8080
+    targetPort: metrics-port
+    #nodePort: 30100
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depthai-con-deployment
+  namespace: default
+  labels:
+    app: depthai-con
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: depthai-con
+  template:
+    metadata:
+      labels:
+        app: depthai-con
+    spec:
+      containers:
+      - name: depthai-con
+        image: localhost:5000/oak:con
+        ports:
+        - containerPort: 8000
+          name: fastapi-port
+        env:
+        - name: BROKER_SERVER
+          value: "kafka-stack.default.svc.cluster.local"
+        - name: KAFKA_TOPIC
+          value: "frame"
+        #command: [ "/bin/bash", "-c", "--" ]
+        #args: [ "while true; do sleep 30; done;" ]
+      nodeSelector:
+        kubernetes.io/hostname: server01
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: depthai-con-service
+  namespace: default
+spec:
+  type: ClusterIP
+  #type: NodePort
+  #type: LoadBalancer
+  selector:
+    app: depthai-con
+  ports:
+  - name: fastapi-svc-port
+    protocol: TCP
+    port: 8080
+    targetPort: fastapi-port
+    #nodePort: 30100
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: depthai-con-ingress-route
+  namespace: default
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`depthai.redalf.test`) && PathPrefix(`/`) || Host(`depthai.redalf.de`) && PathPrefix(`/`)  
+      kind: Rule
+      services:
+        - name: depthai-con-service
+          port: fastapi-svc-port
+---
