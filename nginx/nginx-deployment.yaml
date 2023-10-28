@@ -83,7 +83,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
 spec:
   rules:
-  - host: "nginx.redalf.de"
+  - host: "demo.redalf.test"
     http:
       paths:
       - path: /
