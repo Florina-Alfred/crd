@@ -92,19 +92,19 @@ spec:
 #  dnsNames:
 #    - py.home.local
 #---
-#apiVersion: autoscaling/v1
-#kind: HorizontalPodAutoscaler
-#metadata:
-#  name: python-deployment
-#  namespace: python-ns
-#spec:
-#  scaleTargetRef:
-#    apiVersion: apps/v1
-#    kind: Deployment
-#    name: python-deployment
-#  minReplicas: 1
-#  maxReplicas: 10
-#  targetCPUUtilizationPercentage: 30
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ name: python-deployment
+ namespace: python-ns
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: python-deployment
+ minReplicas: 1
+ maxReplicas: 10
+ targetCPUUtilizationPercentage: 30
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -116,7 +116,8 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`florina.redalf.test`) && PathPrefix(`/`) || Host(`florina.redalf.de`) && PathPrefix(`/`)  
+    - match: Host(`demo.redalf.test`) && PathPrefix(`/`)
+    # - match: Host(`florina.redalf.test`) && PathPrefix(`/`) || Host(`florina.redalf.de`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: python-service
