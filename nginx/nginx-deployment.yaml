@@ -74,6 +74,21 @@ spec:
 #      sans:
 #        - nginx.redalf.de
 #---
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ name: nginx-deployment
+ namespace: nginx-ns
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: nginx-deployment
+ minReplicas: 1
+ maxReplicas: 10
+ targetCPUUtilizationPercentage: 30
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
