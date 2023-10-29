@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: python
-        image: ghcr.io/florina-alfred/proposal:450100c
+        image: ghcr.io/florina-alfred/proposal:8b68782
         ports:
         - containerPort: 3000
           name: http-web-svc
@@ -42,8 +42,8 @@ metadata:
   labels:
     app: python
     k8s-app: python
-  annotations:
-    alpha.monitoring.coreos.com/non-namespaced: "true"
+  #annotations:
+  #  alpha.monitoring.coreos.com/non-namespaced: "true"
 spec:
   type: ClusterIP
   #type: NodePort
@@ -173,26 +173,26 @@ spec:
 #    cloudflarewarp:
 #      disableDefault: "false"
 #---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: python-servicemonitor
-  namespace: python-ns
-  labels:
-    k8s-app: python
-    release: kube-prometheus
-spec:
-  selector:
-    matchExpressions:
-    - {key: k8s-app, operator: Exists}
-  namespaceSelector:
-    matchNames:
-    - python-ns
-  endpoints:
-  - port: http-web-svc
-    interval: 15s
-    #path: /metrics
-    #scheme: TCP
-    #tlsConfig:
-    #  insecureSkipVerify: true
----
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: python-servicemonitor
+#   namespace: python-ns
+#   labels:
+#     k8s-app: python
+#     release: kube-prometheus
+# spec:
+#   selector:
+#     matchExpressions:
+#     - {key: k8s-app, operator: Exists}
+#   namespaceSelector:
+#     matchNames:
+#     - python-ns
+#   endpoints:
+#   - port: http-web-svc
+#     interval: 15s
+#     #path: /metrics
+#     #scheme: TCP
+#     #tlsConfig:
+#     #  insecureSkipVerify: true
+# ---
