@@ -22,9 +22,9 @@ spec:
     spec:
       containers:
       - name: python
-        image: nginxdemos/hello:latest
+        image: ghcr.io/florina-alfred/proposal:8b68782
         ports:
-        - containerPort: 80
+        - containerPort: 3000
           name: http-web-svc
         resources:
           limits:
