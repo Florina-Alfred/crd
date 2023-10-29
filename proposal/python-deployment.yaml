@@ -196,4 +196,17 @@ spec:
 #     #tlsConfig:
 #     #  insecureSkipVerify: true
 # ---
-
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cpu-scaledobject
+  namespace: python-ns
+spec:
+  scaleTargetRef:
+    name: python-deployment
+  triggers:
+  - type: cpu
+    metricType: Utilization
+    metadata:
+      value: "10"
+---
