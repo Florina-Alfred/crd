@@ -6,11 +6,12 @@ metadata:
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: cpu-scaledobject
+  name: deployment
+  # name: cpu-scaledobject
   namespace: python-ns
 spec:
   scaleTargetRef:
-    name: python-deployment
+    deploymentName: python-deployment
   pollingInterval: 5
   cooldownPeriod:  15
   minReplicaCount: 0
