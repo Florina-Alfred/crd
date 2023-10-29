@@ -8,7 +8,7 @@ kind: ScaledObject
 metadata:
   name: deployment
   # name: cpu-scaledobject
-  namespace: python-ns
+  # namespace: python-ns
 spec:
   scaleTargetRef:
     deploymentName: python-deployment
