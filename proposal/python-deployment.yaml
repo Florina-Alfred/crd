@@ -39,9 +39,9 @@ kind: Service
 metadata:
   name: python-service
   namespace: python-ns
-  labels:
-    app: python
-    k8s-app: python
+  #labels:
+  #  app: python
+  #  k8s-app: python
   #annotations:
   #  alpha.monitoring.coreos.com/non-namespaced: "true"
 spec:
