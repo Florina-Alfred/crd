@@ -6,9 +6,9 @@ metadata:
 apiVersion: keda.k8s.io/v1alpha1
 kind: ScaledObject
 metadata:
-  name: python-cpu-deployment
+  name: python-deployment
   # name: cpu-scaledobject
-  # namespace: python-ns
+  namespace: python-ns
 spec:
   scaleTargetRef:
     deploymentName: python-deployment
