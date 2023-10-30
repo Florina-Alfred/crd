@@ -10,7 +10,7 @@ metadata:
   namespace: python-ns
 spec:
   scaleTargetRef:
-    name: pytohn-deployment
+    name: python-deployment
   triggers:
   - type: cpu
     metricType: Utilization
