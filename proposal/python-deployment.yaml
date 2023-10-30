@@ -16,7 +16,6 @@ spec:
     metricType: Utilization
     metadata:
       value: "10"
-      containerName: "api"
 ---
 apiVersion: apps/v1
 kind: Deployment
