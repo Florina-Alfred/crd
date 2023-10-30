@@ -3,24 +3,20 @@ kind: Namespace
 metadata:
   name:  python-ns
 ---
-apiVersion: keda.k8s.io/v1alpha1
+apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: python-deployment
-  # name: cpu-scaledobject
+  name: cpu-scaledobject
   namespace: python-ns
 spec:
   scaleTargetRef:
-    deploymentName: python-deployment
-  pollingInterval: 5
-  cooldownPeriod:  15
-  minReplicaCount: 0
-  maxReplicaCount: 100
+    name: pytohn-deployment
   triggers:
   - type: cpu
     metricType: Utilization
     metadata:
       value: "10"
+      containerName: "api"
 ---
 apiVersion: apps/v1
 kind: Deployment
