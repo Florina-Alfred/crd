@@ -16,6 +16,7 @@ spec:
   pollingInterval: 5
   cooldownPeriod: 10
   minReplicaCount: 0
+  maxReplicaCount: 50
   advanced:                                          # Optional. Section to specify advanced options
     restoreToOriginalReplicaCount: false        # Optional. Default: false
     horizontalPodAutoscalerConfig:                   # Optional. Section to specify HPA related options
