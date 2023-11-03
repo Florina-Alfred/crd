@@ -3,32 +3,36 @@ kind: Namespace
 metadata:
   name:  python-ns
 ---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cpu-scaledobject
+  namespace: python-ns
+spec:
+  scaleTargetRef:
+    name: python-deployment
+  pollingInterval:  5
+  cooldownPeriod:   10
+  minReplicaCount:  0
+  maxReplicaCount:  100 
+  triggers:
+  - type: cpu
+    metricType: Utilization
+    metadata:
+      value: "10"
 # apiVersion: keda.sh/v1alpha1
 # kind: ScaledObject
 # metadata:
-#   name: cpu-scaledobject
+#   name: workload-scaledobject
 #   namespace: python-ns
 # spec:
 #   scaleTargetRef:
 #     name: python-deployment
 #   triggers:
-#   - type: cpu
-#     metricType: Utilization
+#   - type: kubernetes-workload
 #     metadata:
+#       podSelector: "app:python"
 #       value: "10"
-apiVersion: keda.sh/v1alpha1
-kind: ScaledObject
-metadata:
-  name: workload-scaledobject
-  namespace: python-ns
-spec:
-  scaleTargetRef:
-    name: python-deployment
-  triggers:
-  - type: kubernetes-workload
-    metadata:
-      podSelector: "app:python"
-      value: "10"
 ---
 apiVersion: apps/v1
 kind: Deployment
