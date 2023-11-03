@@ -10,7 +10,7 @@ metadata:
   namespace: python-ns
 spec:
   scaleTargetRef:
-    name: python-deployment
+    name: python-deployment-test
     deploymentName: python-deployment
   pollingInterval:  5
   cooldownPeriod:   10
