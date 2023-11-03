@@ -17,7 +17,7 @@ spec:
   - type: cpu
     metricType: Utilization
     metadata:
-      value: "10"
+      value: "15"
 # apiVersion: keda.sh/v1alpha1
 # kind: ScaledObject
 # metadata:
