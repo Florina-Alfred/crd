@@ -11,14 +11,26 @@ metadata:
 spec:
   scaleTargetRef:
     name: python-deployment
+    kind: Deployment
+    apiVersion: apps/v1
   pollingInterval: 5
   cooldownPeriod: 10
-  # minReplicas: 0
+  minReplicas: 0
+  advanced:                                          # Optional. Section to specify advanced options
+    restoreToOriginalReplicaCount: false        # Optional. Default: false
+    horizontalPodAutoscalerConfig:                   # Optional. Section to specify HPA related options
+      behavior:                                      # Optional. Use to modify HPA's scaling behavior
+        scaleDown:
+          stabilizationWindowSeconds: 30
+          policies:
+          - type: Percent
+            value: 100
+            periodSeconds: 5
   triggers:
   - type: cpu
     metricType: Utilization
     metadata:
-      value: "15"
+      value: "10"
 # apiVersion: keda.sh/v1alpha1
 # kind: ScaledObject
 # metadata:
