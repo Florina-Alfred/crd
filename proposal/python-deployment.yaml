@@ -11,7 +11,7 @@ metadata:
 spec:
   scaleTargetRef:
     name: python-deployment-test
-    deploymentName: python-deployment
+    # deploymentName: python-deployment
   pollingInterval:  5
   cooldownPeriod:   10
   triggers:
