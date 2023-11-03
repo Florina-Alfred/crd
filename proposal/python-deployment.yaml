@@ -15,18 +15,7 @@ spec:
     apiVersion: apps/v1
   pollingInterval: 5
   cooldownPeriod: 10
-  minReplicaCount: 0
-  maxReplicaCount: 50
-  advanced:                                          # Optional. Section to specify advanced options
-    restoreToOriginalReplicaCount: false        # Optional. Default: false
-    horizontalPodAutoscalerConfig:                   # Optional. Section to specify HPA related options
-      behavior:                                      # Optional. Use to modify HPA's scaling behavior
-        scaleDown:
-          stabilizationWindowSeconds: 30
-          policies:
-          - type: Percent
-            value: 100
-            periodSeconds: 5
+  # minReplicaCount: 0
   triggers:
   - type: cpu
     metricType: Utilization
