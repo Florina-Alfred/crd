@@ -23,6 +23,7 @@ metadata:
 spec:
   scaleTargetRef:
     name: python-deployment
+    namespace: python-ns
   triggers:
   - type: kubernetes-workload
     metadata:
