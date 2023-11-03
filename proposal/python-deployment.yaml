@@ -13,7 +13,7 @@ spec:
     name: python-deployment
   pollingInterval: 5
   cooldownPeriod: 10
-  minReplicas: 0
+  # minReplicas: 0
   triggers:
   - type: cpu
     metricType: Utilization
