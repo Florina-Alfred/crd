@@ -11,8 +11,8 @@ metadata:
 spec:
   scaleTargetRef:
     name: python-deployment
-    kind: Deployment
-    apiVersion: apps/v1
+    # kind: Deployment
+    # apiVersion: apps/v1
   pollingInterval: 5
   cooldownPeriod: 10
   # minReplicaCount: 0
