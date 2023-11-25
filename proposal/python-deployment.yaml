@@ -211,7 +211,7 @@ metadata:
   name: python-servicemonitor
   namespace: python-ns
   labels:
-    app: python
+    app1: python1
     # k8s-app: python
     # release: kube-prometheus
 spec:
