@@ -226,7 +226,7 @@ spec:
   endpoints:
   - port: http-web-svc
     interval: 15s
-    #path: /metrics
+    path: /metrics
     #scheme: TCP
     #tlsConfig:
     #  insecureSkipVerify: true
