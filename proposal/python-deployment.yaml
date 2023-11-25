@@ -220,9 +220,9 @@ spec:
       app: python
     # matchExpressions:
     # - {key: k8s-app, operator: Exists}
-  # namespaceSelector:
-    # matchNames:
-    # - python-ns
+  namespaceSelector:
+    matchNames:
+    - python-ns
   endpoints:
   - port: http-web-svc
     interval: 15s
