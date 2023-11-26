@@ -225,7 +225,8 @@ spec:
     matchNames:
     - python-ns
   endpoints:
-  - port: http-web-svc
+  # - port: http-web-svc
+  - port: python-port
     interval: 15s
     path: /metrics
     #scheme: TCP
