@@ -227,7 +227,7 @@ spec:
   endpoints:
   # - port: http-web-svc
   - port: python-port
-    interval: 15s
+    interval: 1s
     path: /metrics
     #scheme: TCP
     #tlsConfig:
