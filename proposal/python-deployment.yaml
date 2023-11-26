@@ -209,12 +209,12 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: python-servicemonitor
-  # namespace: python-ns
-  namespace: default
+  namespace: python-ns
+  # namespace: default
   labels:
     app: python
     # k8s-app: python
-    release: kube-prometheus
+    release: prometheus-stack
 spec:
   selector:
     matchLabels:
