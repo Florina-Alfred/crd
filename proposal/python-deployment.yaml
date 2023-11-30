@@ -54,9 +54,10 @@ spec:
     spec:
       containers:
       - name: python
-        image: ghcr.io/florina-alfred/proposal:56972e7
+        # image: ghcr.io/florina-alfred/proposal:56972e
+        image: stefanprodan/podinfo7
         ports:
-        - containerPort: 3000
+        - containerPort: 9898
           name: http-web-svc
         resources:
           limits:
