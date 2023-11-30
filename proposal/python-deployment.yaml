@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: python
-        image: ghcr.io/florina-alfred/proposal:56972e
+        image: ghcr.io/florina-alfred/proposal:56972e7
         # image: stefanprodan/podinfo
         ports:
         - containerPort: 3000
