@@ -149,7 +149,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`site.redalf.test`) && PathPrefix(`/`)
+    - match: Host(`site.redalf.test`) && PathPrefix(`/`) || Host(`site.redalf.de`) && PathPrefix(`/`)
     # - match: Host(`florina.redalf.test`) && PathPrefix(`/`) || Host(`florina.redalf.de`) && PathPrefix(`/`)
       kind: Rule
       services:
