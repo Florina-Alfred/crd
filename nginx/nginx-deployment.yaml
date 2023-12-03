@@ -97,7 +97,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
 spec:
   rules:
-  - host: "demo.redalf.test"
+  - host: "demo.redalf.de"
     http:
       paths:
       - path: /
