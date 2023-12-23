@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name:  python-ns
+  name: python-ns
 ---
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
@@ -17,10 +17,10 @@ spec:
   cooldownPeriod: 10
   minReplicaCount: 1
   triggers:
-  - type: cpu
-    metricType: Utilization
-    metadata:
-      value: "10"
+    - type: cpu
+      metricType: Utilization
+      metadata:
+        value: "10"
 # apiVersion: keda.sh/v1alpha1
 # kind: ScaledObject
 # metadata:
@@ -53,19 +53,19 @@ spec:
         app: python
     spec:
       containers:
-      - name: python
-        image: ghcr.io/florina-alfred/proposal:56972e7
-        # image: stefanprodan/podinfo
-        ports:
-        - containerPort: 3000
-          name: http-web-svc
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: 500m
-          requests:
-            memory: "64Mi"
-            cpu: 200m
+        - name: python
+          image: ghcr.io/florina-alfred/proposal:87589f3
+          # image: stefanprodan/podinfo
+          ports:
+            - containerPort: 3000
+              name: http-web-svc
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: 500m
+            requests:
+              memory: "64Mi"
+              cpu: 200m
 ---
 apiVersion: v1
 kind: Service
@@ -84,11 +84,11 @@ spec:
   selector:
     app: python
   ports:
-  - name: python-port
-    protocol: TCP
-    port: 8080
-    targetPort: http-web-svc
-    #nodePort: 30100
+    - name: python-port
+      protocol: TCP
+      port: 8080
+      targetPort: http-web-svc
+      #nodePort: 30100
 ---
 #apiVersion: networking.k8s.io/v1
 #kind: Ingress
@@ -150,7 +150,7 @@ spec:
     - websecure
   routes:
     - match: Host(`site.redalf.test`) && PathPrefix(`/`) || Host(`site.redalf.de`) && PathPrefix(`/`)
-    # - match: Host(`florina.redalf.test`) && PathPrefix(`/`) || Host(`florina.redalf.de`) && PathPrefix(`/`)
+      # - match: Host(`florina.redalf.test`) && PathPrefix(`/`) || Host(`florina.redalf.de`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: python-service
@@ -224,13 +224,14 @@ spec:
     # - {key: k8s-app, operator: Exists}
   namespaceSelector:
     matchNames:
-    - python-ns
+      - python-ns
   endpoints:
-  # - port: http-web-svc
-  - port: python-port
-    interval: 1s
-    path: /metrics
-    #scheme: TCP
-    #tlsConfig:
-    #  insecureSkipVerify: true
+    # - port: http-web-svc
+    - port: python-port
+      interval: 1s
+      path: /metrics
+      #scheme: TCP
+      #tlsConfig:
+      #  insecureSkipVerify: true
 ---
+
