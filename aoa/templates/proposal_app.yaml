@@ -10,12 +10,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Florina-Alfred/crd.git
-    targetRevision: HEAD
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
     path: proposal
 
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.spec.destination.server }}
     namespace: python-ns
     
   syncPolicy:
